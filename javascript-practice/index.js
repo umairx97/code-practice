@@ -32,16 +32,61 @@ function createStore(reducer) {
   };
 }
 
-// App Code
+
+// Action types 
+const ADD_TODO = "ADD_TODO";
+const REMOVE_TODO = "REMOVE_TODO";
+const TOGGLE_TODO = "TOGGLE_TODO";
+const ADD_GOAL = "ADD_GOAL";
+const REMOVE_GOAL = "REMOVE_GOAL";
+
+
+// Action creators 
+function addTodoAction(todo) {
+  return {
+    type: ADD_TODO,
+    todo
+  };
+}
+
+function removeTodoAction(id) {
+  return {
+    type: REMOVE_TODO,
+    id
+  };
+}
+
+function toggleTodoAction(id) {
+  return {
+    type: TOGGLE_TODO,
+    id
+  };
+}
+
+function addGoalAcion(goal) {
+  return {
+    type: ADD_GOAL,
+    goal
+  };
+}
+
+function removeGoalAction(id) {
+  return {
+    type: REMOVE_GOAL,
+    id
+  };
+}
+
+// Todos Reducer
 function todos(state = [], action) {
   switch (action.type) {
-    case "ADD_TODO":
+    case ADD_TODO:
       return state.concat([action.todo]);
 
-    case "REMOVE_TODO":
+    case REMOVE_TODO:
       return state.filter(todo => todo.id !== action.id);
 
-    case "TOGGLE_TODO":
+    case TOGGLE_TODO:
       return state.map(todo =>
         todo.id !== action.id
           ? todo
@@ -53,8 +98,30 @@ function todos(state = [], action) {
   }
 }
 
+// Goals Reducer
+function goals(state = [], action) {
+  switch (action.type) {
+    case ADD_GOAL:
+      return state.concat([action.goal]);
+
+    case REMOVE_GOAL:
+      return state.filter(goal => goal.id !== action.id);
+
+    default:
+      return state;
+  }
+}
+
+// Combines all the reducers and calls whichever is needed
+function rootReducer(state = {}, action) {
+  return {
+    todos: todos(state.todos, action),
+    goals: goals(state.goals, action)
+  };
+}
+
 // Create a variable named store with all the methods in createStore
-const store = createStore(todos);
+const store = createStore(rootReducer);
 
 // Runs as a listener as to something happens to the state
 store.subscribe(() => {
@@ -63,10 +130,19 @@ store.subscribe(() => {
 
 // Dispatches an object to createStore updates the state based on the aciton passed
 store.dispatch({
-  type: "ADD_TODO",
+  type: ADD_TODO,
   todo: {
     id: 1,
     name: "Learn Redux",
+    complete: false
+  }
+});
+
+store.dispatch({
+  type: ADD_GOAL,
+  goal: {
+    id: 1,
+    name: "Make Money",
     complete: false
   }
 });
