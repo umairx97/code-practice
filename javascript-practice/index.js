@@ -1,4 +1,11 @@
 // Library Code
+function generateId() {
+  return (
+    Math.random()
+      .toString(36)
+      .substring(2) + new Date().getTime().toString(36)
+  );
+}
 
 function createStore(reducer) {
   // The State should have four parts
@@ -126,23 +133,56 @@ store.subscribe(() => {
   console.log("The new state is", store.getState());
 });
 
-// Dispatches an object to createStore updates the state based on the aciton passed
-store.dispatch(
-  addTodoAction({
-    todo: {
-      id: Math.round(Math.random(1000) * 1000),
-      name: "Learn React Native",
-      complete: false
-    }
-  })
-);
+// Function to add todo by calling addtodoaction action creator
+function addTodo() {
+  const input = document.getElementById("todo");
+  const name = input.value;
+  input.value = "";
 
-store.dispatch(
-  addGoalAcion({
-    goal: {
-      id: Math.round(Math.random(1000) * 1000),
-      name: "Learn React Native",
-      complete: true
-    }
-  })
-);
+  store.dispatch(
+    addTodoAction({
+      name,
+      complete: false,
+      id: generateId()
+    })
+  );
+}
+
+// Function to add a goal by calling the addgoalaction action creator
+function addGoal() {
+  const input = document.getElementById("goal");
+  const name = input.value;
+  input.value = "";
+
+  store.dispatch(
+    addGoalAcion({
+      name,
+      id: generateId()
+    })
+  );
+}
+
+document.getElementById("todoBtn").addEventListener("click", addTodo);
+
+document.getElementById("goalBtn").addEventListener("click", addGoal);
+
+// Dispatches an object to createStore updates the state based on the aciton passed
+// store.dispatch(
+//   addTodoAction({
+//     todo: {
+//       id: Math.round(Math.random(1000) * 1000),
+//       name: "Learn React Native",
+//       complete: false
+//     }
+//   })
+// );
+
+// store.dispatch(
+//   addGoalAcion({
+//     goal: {
+//       id: Math.round(Math.random(1000) * 1000),
+//       name: "Learn React Native",
+//       complete: true
+//     }
+//   })
+// );
