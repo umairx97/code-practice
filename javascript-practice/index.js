@@ -130,7 +130,13 @@ const store = createStore(rootReducer);
 
 // Runs as a listener as to something happens to the state
 store.subscribe(() => {
-  console.log("The new state is", store.getState());
+  const { goals, todos } = store.getState();
+
+  document.getElementById("goals").innerHTML = "";
+  document.getElementById("todos").innerHTML = "";
+
+  goals.forEach(addGoalToDom);
+  todos.forEach(addTodoToDom);
 });
 
 // Function to add todo by calling addtodoaction action creator
@@ -162,27 +168,22 @@ function addGoal() {
   );
 }
 
+// DOM Code
 document.getElementById("todoBtn").addEventListener("click", addTodo);
-
 document.getElementById("goalBtn").addEventListener("click", addGoal);
 
-// Dispatches an object to createStore updates the state based on the aciton passed
-// store.dispatch(
-//   addTodoAction({
-//     todo: {
-//       id: Math.round(Math.random(1000) * 1000),
-//       name: "Learn React Native",
-//       complete: false
-//     }
-//   })
-// );
+function addTodoToDom(todo) {
+  const node = document.createElement("li");
+  const text = document.createTextNode(todo.name);
+  node.appendChild(text);
 
-// store.dispatch(
-//   addGoalAcion({
-//     goal: {
-//       id: Math.round(Math.random(1000) * 1000),
-//       name: "Learn React Native",
-//       complete: true
-//     }
-//   })
-// );
+  document.getElementById("todos").appendChild(node);
+}
+
+function addGoalToDom(goal) {
+  const node = document.createElement("li");
+  const text = document.createTextNode(goal.name);
+  node.appendChild(text);
+
+  document.getElementById("goals").append(node);
+}
