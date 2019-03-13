@@ -32,16 +32,14 @@ function createStore(reducer) {
   };
 }
 
-
-// Action types 
+// Action types
 const ADD_TODO = "ADD_TODO";
 const REMOVE_TODO = "REMOVE_TODO";
 const TOGGLE_TODO = "TOGGLE_TODO";
 const ADD_GOAL = "ADD_GOAL";
 const REMOVE_GOAL = "REMOVE_GOAL";
 
-
-// Action creators 
+// Action creators
 function addTodoAction(todo) {
   return {
     type: ADD_TODO,
@@ -129,20 +127,22 @@ store.subscribe(() => {
 });
 
 // Dispatches an object to createStore updates the state based on the aciton passed
-store.dispatch({
-  type: ADD_TODO,
-  todo: {
-    id: 1,
-    name: "Learn Redux",
-    complete: false
-  }
-});
+store.dispatch(
+  addTodoAction({
+    todo: {
+      id: Math.round(Math.random(1000) * 1000),
+      name: "Learn React Native",
+      complete: false
+    }
+  })
+);
 
-store.dispatch({
-  type: ADD_GOAL,
-  goal: {
-    id: 1,
-    name: "Make Money",
-    complete: false
-  }
-});
+store.dispatch(
+  addGoalAcion({
+    goal: {
+      id: Math.round(Math.random(1000) * 1000),
+      name: "Learn React Native",
+      complete: true
+    }
+  })
+);
