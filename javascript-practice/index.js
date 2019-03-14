@@ -168,6 +168,7 @@ function addGoal() {
   );
 }
 
+
 // DOM Code
 document.getElementById("todoBtn").addEventListener("click", addTodo);
 document.getElementById("goalBtn").addEventListener("click", addGoal);
