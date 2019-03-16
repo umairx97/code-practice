@@ -7,38 +7,6 @@ function generateId() {
   );
 }
 
-function createStore(reducer) {
-  // The State should have four parts
-
-  // 1. The State
-  // 2. Get the state
-  // 3. Listen to changes to the state
-  // 4. Update the state
-
-  let state;
-  let listeners = [];
-
-  const getState = () => state;
-
-  const subscribe = listener => {
-    listeners.push(listener);
-    return () => {
-      listeners = listeners.filter(l => l !== listener);
-    };
-  };
-
-  const dispatch = action => {
-    state = reducer(state, action);
-    listeners.forEach(listener => listener());
-  };
-
-  return {
-    getState,
-    subscribe,
-    dispatch
-  };
-}
-
 // Action types
 const ADD_TODO = "ADD_TODO";
 const REMOVE_TODO = "REMOVE_TODO";
@@ -117,16 +85,13 @@ function goals(state = [], action) {
   }
 }
 
-// Combines all the reducers and calls whichever is needed
-function rootReducer(state = {}, action) {
-  return {
-    todos: todos(state.todos, action),
-    goals: goals(state.goals, action)
-  };
-}
-
 // Create a variable named store with all the methods in createStore
-const store = createStore(rootReducer);
+const store = Redux.createStore(
+  Redux.combineReducers({
+    todos,
+    goals
+  })
+);
 
 // Runs as a listener as to something happens to the state
 store.subscribe(() => {
