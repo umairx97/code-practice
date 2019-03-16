@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Todos Goals</title>
+    <!-- ============== React, Babel, Redux ============== -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ============== React, Babel, Redux ============== -->
+
+    <title>Todos Goals</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
+    <div class="root"></div>
     <div>
       <h1>Todos List</h1>
       <input type="text" id="todo" placeholder="Add Todo" />
@@ -17,6 +40,13 @@
       <button id="goalBtn">Add Goal</button>
       <ul id="goals"></ul>
     </div>
+
+    <hr />
+
+    <div id="app"></div>
+
+    <script type="text/babel" src="app.js"></script>
+
     <script src="index.js"></script>
   </body>
 </html>
