@@ -10,7 +10,8 @@ class Todos extends React.Component {
   render() {
     return (
       <div>
-        Todos
+        <h1>Todos List</h1>
+        <input type="text" />
         <List />
       </div>
     );
