@@ -85,6 +85,7 @@ function goals(state = [], action) {
   }
 }
 
+// Middleware for checking todo
 const checker = store => next => action => {
   if (
     action.type === ADD_TODO &&
@@ -103,13 +104,22 @@ const checker = store => next => action => {
   return next(action);
 };
 
+// Middleware for logging changes to state
+const logger = store => next => action => {
+  console.group(action.type);
+  console.log("The action", action);
+  const result = next(action);
+  console.log("The new state is ", store.getState());
+  console.groupEnd();
+  return result;
+};
 // Create a variable named store with all the methods in createStore
 const store = Redux.createStore(
   Redux.combineReducers({
     todos,
     goals
   }),
-  Redux.applyMiddleware(checker)
+  Redux.applyMiddleware(checker, logger)
 );
 
 // Runs as a listener as to something happens to the state
