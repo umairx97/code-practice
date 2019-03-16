@@ -85,6 +85,23 @@ function goals(state = [], action) {
   }
 }
 
+function checkAndDispatch(store, action) {
+  if (
+    action.type === ADD_TODO &&
+    action.todo.name.toLowerCase().includes("bitcoin")
+  ) {
+    return alert("Nope thats a bad idea");
+  }
+
+  if (
+    action.type === ADD_GOAL &&
+    action.goal.name.toLowerCase().includes("bitcoin")
+  ) {
+    return alert("Nope thats a bad idea");
+  }
+
+  return store.dispatch(action);
+}
 // Create a variable named store with all the methods in createStore
 const store = Redux.createStore(
   Redux.combineReducers({
@@ -110,7 +127,7 @@ function addTodo() {
   const name = input.value;
   input.value = "";
 
-  store.dispatch(
+  checkAndDispatch(store,
     addTodoAction({
       name,
       complete: false,
@@ -125,7 +142,7 @@ function addGoal() {
   const name = input.value;
   input.value = "";
 
-  store.dispatch(
+  checkAndDispatch(store,
     addGoalAcion({
       name,
       id: generateId()
@@ -150,14 +167,14 @@ function addTodoToDom(todo) {
   const node = document.createElement("li");
   const text = document.createTextNode(todo.name);
   const removeBtn = createRemoveButton(() => {
-    store.dispatch(removeTodoAction(todo.id));
+    checkAndDispatch(store,removeTodoAction(todo.id));
   });
 
   node.appendChild(text);
   node.appendChild(removeBtn);
   node.style.textDecoration = todo.complete ? "line-through" : "none";
   node.addEventListener("click", () => {
-    store.dispatch(toggleTodoAction(todo.id));
+    checkAndDispatch(store,toggleTodoAction(todo.id));
   });
 
   document.getElementById("todos").appendChild(node);
@@ -165,7 +182,7 @@ function addTodoToDom(todo) {
 
 function addGoalToDom(goal) {
   const removeBtn = createRemoveButton(() => {
-    store.dispatch(removeGoalAction(goal.id));
+    checkAndDispatch(store,removeGoalAction(goal.id));
   });
 
   const node = document.createElement("li");
