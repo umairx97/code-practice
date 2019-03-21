@@ -11,7 +11,7 @@ class Todos extends React.Component {
     return (
       <div>
         <h1>Todos List</h1>
-        <input type="text" />
+        <input type="text" placeholder="Add Todo"/>
         <List />
       </div>
     );
@@ -22,7 +22,8 @@ class Goals extends React.Component {
   render() {
     return (
       <div>
-        GOALS
+        <h1>Goals</h1>
+        <input type="text" />
         <List />
       </div>
     );
