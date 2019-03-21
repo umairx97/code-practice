@@ -11,7 +11,7 @@ class Todos extends React.Component {
     return (
       <div>
         <h1>Todos List</h1>
-        <input type="text" placeholder="Add Todo"/>
+        <input type="text" placeholder="Add Todo" />
         <List />
       </div>
     );
