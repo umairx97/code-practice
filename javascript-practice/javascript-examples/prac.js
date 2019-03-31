@@ -29,12 +29,11 @@
 //   return deck;
 // };
 
-// const abc = {title, questions} = Data['React'];
-// console.log(abc)
-
+// const abc = { title, questions } = Data["React"];
+// console.log(abc);
 
 /* ****************************************************
-********************************************************* */
+ ********************************************************* */
 
 /*
 Use React and the data below to display a list of people alongside their books they like.
@@ -139,3 +138,7 @@ For detailed instructions, refer to instructions.md.
 
 //   console.log(`${PeepName} Likes ${FavBook} Book`);
 // });
+
+// const a = 10 , b =20, c = 30;
+
+// console.log(a*b/c+a)

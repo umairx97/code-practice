@@ -25,13 +25,8 @@
 //   hobbies: ["Coding", "UI Design", "UX Design"]
 // };
 
-// const obj3 = {
-//   interests: ["Gaming", "Building Apps"]
-// };
+// Object.assign(obj1, obj2); //appends the properties of obj2 in obj1
 
-// Object.assign(obj1, obj2, obj3);
-
-// console.log(obj1.interests);
-// console.log(obj1["hobbies"]);
+// console.log(obj1.hobbies); // Output: Array(3) [ "Coding", "UI Design", "UX Design" ]
 
 // *************************************************
