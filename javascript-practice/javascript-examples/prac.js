@@ -142,3 +142,17 @@ For detailed instructions, refer to instructions.md.
 // const a = 10 , b =20, c = 30;
 
 // console.log(a*b/c+a)
+
+// // Generates random number from 1 - 1000 
+// // But the number is in floating point value
+// let randomNumber = Math.random(1) * 1000;
+
+// console.log(randomNumber);
+// // Result: Random number between 1 and 1000 in points
+
+// // Rounds off the number by using math.round
+// let randomNumber2 = Math.round(Math.random(1) * 1000);
+
+// console.log(randomNumber2);
+// // Result: Random digit between 1 and 1000
+
