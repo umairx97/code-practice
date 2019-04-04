@@ -1,11 +1,11 @@
-/* initializing a variable before
-declaration */
-name = "John";
+const arr = ["John", "Jane", "Johan"];
 
-/* Hoisting does not apply to 
-ES6 variable declaration */
-let name;
-
-console.log(name);
-/* Error: can't access lexical
-declaration `name' before initialization */
+/* iterating over an array using 
+for of loop  */
+for (let value of arr) {
+  console.log(`Welcome ${value}`);
+}
+/* Result: 
+Welcome John
+Welcome Jane
+Welcome Johan */
