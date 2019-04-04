@@ -1,13 +1,11 @@
-const arr = [1, 2, 3, 4, 5, 6];
+/* initializing a variable before
+declaration */
+name = "John";
 
-/* Filter method runs on a specific
-condition and returns a new array 
-that satisfies the condition */
-const newArr = arr.filter(num => {
-  // Return an array that excludes 3
-  return num !== 3;
-});
+/* Hoisting does not apply to 
+ES6 variable declaration */
+let name;
 
-console.log(newArr);
-// Result:
-// Array(5) [ 1, 2, 4, 5, 6 ]
+console.log(name);
+/* Error: can't access lexical
+declaration `name' before initialization */
