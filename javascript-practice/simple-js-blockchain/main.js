@@ -9,32 +9,38 @@ class Block {
     this.hash = this.calculateHash();
   }
 
-  calculateHash = () => {
+  calculateHash() {
     return SHA256(
       this.index +
         this.previousHash +
         this.timestamp +
         JSON.stringify(this.data)
     ).toString();
-  };
+  }
 }
 
 class Blockchain {
   constructor() {
-    this.chain = [createGenesisBlock()];
+    this.chain = [this.createGenesisBlock()];
   }
 
-  createGenesisBlock = () => {
+  createGenesisBlock() {
     return new Block(0, "19/04/2019", "Genesis Block", "0");
-  };
+  }
 
-  getLatestBlock = () => {
+  getLatestBlock() {
     return this.chain[this.chain.length - 1];
-  };
+  }
 
-  addBlock = newBlock => {
+  addBlock(newBlock) {
     newBlock.previousHash = this.getLatestBlock().hash;
     newBlock.hash = newBlock.calculateHash();
     this.chain.push(newBlock);
-  };
+  }
 }
+
+let JScoin = new Blockchain();
+
+JScoin.addBlock(new Block(1, "19/04/2019", { name: "Umair", amount: 100 }));
+JScoin.addBlock(new Block(1, "19/04/2019", { name: "Asad", amount: 100 }));
+console.log(JSON.stringify(JScoin, null, 4));
