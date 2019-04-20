@@ -184,3 +184,14 @@
 
 // console.log(getMobileByBrand("Samsung"));
 
+const week = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+let a = new Date();
+console.log(week[a.getDay()]);
