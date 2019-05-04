@@ -4,6 +4,14 @@ export const generateId = () => {
   return Math.round(Math.random(100) * 1000);
 };
 
+export function addTodoAsync(todo) {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(addTodo(todo));
+    }, 3000);
+  };
+}
+
 export const addTodo = todo => {
   return {
     type: actionTypes.ADD_TODO,

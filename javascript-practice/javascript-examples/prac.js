@@ -195,3 +195,8 @@
 // ];
 // let a = new Date();
 // console.log(week[a.getDay()]);
+
+const a = prompt("Please enter a value");
+const fruits = ["Apple", "Strawberry", "Mango"];
+const result = fruits.filter(item => item === a); 
+result.length ? alert('Value found') : alert('Value not found')

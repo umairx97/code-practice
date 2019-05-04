@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { connect } from "react-redux";
-import { addTodo, removeTodo, toggleTodo } from "./actions";
+import { addTodo, removeTodo, toggleTodo, addTodoAsync } from "./actions";
 
 class App extends Component {
   state = {
@@ -10,7 +10,7 @@ class App extends Component {
 
   handleSubmit = event => {
     const { todo } = this.state;
-    this.props.addTodo(todo);
+    this.props.addTodoAsync(todo);
     this.setState({
       todo: ""
     });
@@ -54,5 +54,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { addTodo, removeTodo, toggleTodo }
+  { addTodo, removeTodo, toggleTodo, addTodoAsync }
 )(App);
