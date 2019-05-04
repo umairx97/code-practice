@@ -1,22 +1,31 @@
+const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => {
-  console.log("THe user is requesting at" + req.url);
-  res.send("Hello world");
+mongoose.connect("mongodb://localhost:27017/testing", {
+  useNewUrlParser: true,
+  useCreateIndex: true
 });
 
-app.get("/hello", (req, res) => {
-  console.log("THe user is requesting at" + req.url);
-  res.send({
-    name: "Umair",
-    profession: "Developer",
-    age: 21
+app.use(express.json());
+
+
+const { Student } = require("./models/student");
+
+app.post("/api/student", (req, res) => {
+  const student = new Student(req.body);
+  student.save((err, doc) => {
+    if (err) {
+      return res.json({ success: false, err });
+    }
+    res.status(200).json({
+      success: true,
+      userData: doc
+    });
   });
 });
 
-const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log("Server is running at " + PORT);
+app.listen(3000, () => {
+  console.log("Server listening at 3000");
 });
