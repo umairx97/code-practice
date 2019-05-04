@@ -9,7 +9,6 @@ mongoose.connect("mongodb://localhost:27017/testing", {
 
 app.use(express.json());
 
-
 const { Student } = require("./models/student");
 
 app.post("/api/student", (req, res) => {
@@ -25,6 +24,21 @@ app.post("/api/student", (req, res) => {
   });
 });
 
+app.get("/api/student/:id", (req, res) => {
+  const id = req.params.id;
+
+  Student.findById(id)
+    .then(profile => {
+      if (!profile) {
+        res.status(404);
+      }
+      
+      res.send(profile);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    });
+});
 
 app.listen(3000, () => {
   console.log("Server listening at 3000");
