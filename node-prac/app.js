@@ -32,7 +32,7 @@ app.get("/api/student/:id", (req, res) => {
       if (!profile) {
         res.status(404);
       }
-      
+
       res.send(profile);
     })
     .catch(err => {
@@ -43,3 +43,5 @@ app.get("/api/student/:id", (req, res) => {
 app.listen(3000, () => {
   console.log("Server listening at 3000");
 });
+
+

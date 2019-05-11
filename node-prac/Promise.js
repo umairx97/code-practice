@@ -11,7 +11,7 @@
 // };
 
 // const getResult = async () => {
-//   try { 
+//   try {
 //     const result = await addNumber(5, 6);
 //     const result2 = await addNumber(6, 4);
 //     const r3 = await addNumber(6, 5);
@@ -28,3 +28,4 @@
 // };
 
 // getResult();
+
