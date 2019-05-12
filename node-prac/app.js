@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 const express = require("express");
 const app = express();
+
 
 mongoose.connect("mongodb://localhost:27017/testing", {
   useNewUrlParser: true,
@@ -9,18 +10,20 @@ mongoose.connect("mongodb://localhost:27017/testing", {
 
 app.use(express.json());
 
-const { Student } = require("./models/student");
+const Student = require("./models/student");
 
 app.post("/api/student", (req, res) => {
-  const student = new Student(req.body);
+  const student = Student(req.body);
   student.save((err, doc) => {
     if (err) {
-      return res.json({ success: false, err });
+      return res.json({ success: false, err: {message: 'Sorry, Please try again later'} });
     }
     res.status(200).json({
       success: true,
       userData: doc
     });
+
+    console.log('This log is after storing data')
   });
 });
 
