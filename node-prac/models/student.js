@@ -51,7 +51,7 @@ studentSchema.pre("save", async function(next) {
   const student = this;
   student.password = await bcrypt.hash(student.password, 8)
   console.log('This is a PRE middleware')
-  await next();
+  next();
 
 });
 
@@ -60,10 +60,10 @@ studentSchema.pre("save", async function(next) {
 // Current Behaviour: Post hook is running before saving data but after the pre hook
 // Expected Behaviour: Post hook should run after saving the data
 
-studentSchema.post("save", async function(next){ 
+studentSchema.post('save', function(next) { 
   console.log('This is a POST middleware')
-})
 
+})
 const Student = mongoose.model("Student", studentSchema);
 
 module.exports = Student;

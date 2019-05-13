@@ -18,6 +18,8 @@ app.post("/api/student", (req, res) => {
     if (err) {
       return res.json({ success: false, err: {message: 'Sorry, Please try again later'} });
     }
+
+    
     res.status(200).json({
       success: true,
       userData: doc
