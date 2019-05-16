@@ -51,6 +51,18 @@
 
 // console.log(addNewAccount('Ashir'))
 
+
+
+
+
+/**
+|==========================================================
+|
+|==========================================================
+*/
+
+
+
 // const NAMES = ["Umair", "Asad", "Ashir"];
 
 // const SEMESTER = [8, 6, 7];
@@ -67,6 +79,16 @@
 //   }
 // }
 
+
+
+/**
+|==========================================================
+|
+|==========================================================
+*/
+
+
+
 // const fruits = ["apple", "banana", "cake"];
 
 // const a = prompt("Enter value to search");
@@ -78,6 +100,17 @@
 //     console.log("Value not found");
 //   }
 // }
+
+
+
+/**
+|==========================================================
+|
+|==========================================================
+*/
+
+
+
 
 // const generateId = () => {
 //   return Math.round(Math.random(1) * 1000);
@@ -184,6 +217,14 @@
 
 // console.log(getMobileByBrand("Samsung"));
 
+
+/**
+|==========================================================
+|
+|==========================================================
+*/
+
+
 // const week = [
 //   "Sunday",
 //   "Monday",
@@ -196,6 +237,15 @@
 // let a = new Date();
 // console.log(week[a.getDay()]);
 
+
+
+
+/**
+|==========================================================
+|
+|==========================================================
+*/
+
 // const a = prompt("Please enter a value");
 // const fruits = ["Apple", "Strawberry", "Mango"];
 // const result = fruits.filter(item => item === a); 
@@ -203,3 +253,99 @@
 
 
 
+/**
+|==========================================================
+| 
+|==========================================================
+*/
+
+
+
+// const arr = [
+//     {
+//         id: 1,
+//         name: 'Umair',
+//         profession: 'Developer',
+//     },
+
+//     {
+//         id: 2,
+//         name: 'Asad',
+//         profession: 'React Developer',
+//     },
+
+
+//     {
+//         id: 3,
+//         name: 'Ashir',
+//         profession: 'student',
+//     }
+
+// ]
+
+
+// const index = 2;
+
+// const newObj = {
+//     id: 3,
+//     name: 'Ashir',
+//     profession: 'student',
+//     age: 20
+// }
+
+
+// arr[index] = { ...newObj }
+
+// console.log(arr)
+
+
+
+/**
+|==========================================================
+|
+|==========================================================
+*/
+
+// const peopleArray = [
+//     { id: 123, name: "dave", age: 23 },
+//     { id: 456, name: "chris", age: 23 },
+//     { id: 789, name: "bob", age: 23 },
+//     { id: 101, name: "tom", age: 23 },
+//     { id: 102, name: "tim", age: 23 }
+// ]
+
+// const idToSelect = "789";
+
+// const arrayToObject = (array) => {
+//      return array.reduce((obj, item) => { 
+//         obj[item.id] = item
+//         return obj
+//     }, {})
+// }
+
+// const peopleObject = arrayToObject(peopleArray)
+// console.log(peopleObject[idToSelect])
+
+/**
+|==========================================================
+|
+|==========================================================
+*/
+
+
+// const peopleArray = [
+//     { id: 123, name: "dave", age: 23 },
+//     { id: 456, name: "chris", age: 23 },
+//     { id: 789, name: "bob", age: 23 },
+//     { id: 101, name: "tom", age: 23 },
+//     { id: 102, name: "tim", age: 23 }
+// ]
+
+
+// console.table(peopleArray)
+
+/**
+|==========================================================
+|
+|==========================================================
+*/

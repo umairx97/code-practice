@@ -56,14 +56,6 @@ studentSchema.pre("save", async function(next) {
 });
 
 
-// TODO: Remove the bug below
-// Current Behaviour: Post hook is running before saving data but after the pre hook
-// Expected Behaviour: Post hook should run after saving the data
-
-studentSchema.post('save', function(next) { 
-  console.log('This is a POST middleware')
-
-})
 const Student = mongoose.model("Student", studentSchema);
 
 module.exports = Student;
