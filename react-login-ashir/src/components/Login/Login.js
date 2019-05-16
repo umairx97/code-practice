@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Input from "../Input/Input";
+import { Link } from 'react-router-dom'
 
 export default class Login extends Component {
   state = {
@@ -8,41 +9,119 @@ export default class Login extends Component {
       { id: 1, name: "umair", pass: "ahmed" },
       { id: 2, name: "aamir", pass: "pinger" }
     ],
-
     isAuth: false,
     currentUser: null,
+
     errors: {
       hasError: false,
-      errorObj: {
-       
-      }
+      errorObj: {},
+      serverError: ''
     },
+
     username: "",
-    pass: ""
+    password: "",
+    successMessage: '',
   };
+
+
+  componentDidMount() {
+    const data = JSON.parse(localStorage.getItem('currentUser'))
+    if(data){ 
+      this.props.history.push('/admindashboard')
+    }
+  }
+  
 
   onSubmit = ev => {
     ev.preventDefault();
 
-    const {users, isAuth, currentUser, errors, username, pass} = this.state
 
-    
+    const { users, errors, username, password } = this.state
+
+    if (username.length < 3) {
+      console.log('username block is running')
+
+      errors.hasError = true;
+      errors.errorObj['username'] = { message: 'The user should be greater than 3' };
+      this.setState({ errors })
+      return
+
+    } else {
+      errors.hasError = false
+      errors.errorObj = {}
+      this.setState({
+        errors
+      })
+    }
+
+
+    if (password.length < 4) {
+
+      errors.hasError = true;
+      errors.errorObj['password'] = { message: 'The password should be greater than 4' };
+      console.log(errors)
+      this.setState({ errors })
+      return
+
+    } else {
+      errors.hasError = false
+      errors.errorObj = {}
+      this.setState({
+        errors
+      })
+
+    }
+
+    const checkedUser = users.filter(user => {
+      return username === user.name && password === user.pass
+    })
+
+    const user = JSON.parse(localStorage.getItem('regUser'))
+
+    if ((checkedUser.length) || (user.username === username && user.password === password)) {
+
+      if (!checkedUser.length) {
+        localStorage.setItem('currentUser', JSON.stringify(checkedUser[0] = { ...user }));
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify(checkedUser[0]));
+
+
+      this.setState({
+        successMessage: 'Very good',
+        errors
+
+      })
+      this.props.history.push('/admindashboard')
+
+    } else {
+      errors.serverError = "Invalid Username or Password";
+      this.setState({
+        errors,
+        isAuth: false,
+        successMessage: ''
+      })
+    }
   };
 
   render() {
-    const { username, errors, pass } = this.state;
+    const { username, errors, password, successMessage } = this.state;
 
-    console.log(errors.errorObj["username"]);
+
     return (
       <div>
-        <div class="limiter">
-          <div class="container-login100">
-            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+        <div className="limiter">
+          <div className="container-login100">
+            <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
               <form
-                class="login100-form validate-form"
+                className="login100-form validate-form"
                 onSubmit={ev => this.onSubmit(ev)}
               >
-                <span class="login100-form-title p-b-33">Account Login</span>
+                <span className="login100-form-title p-b-33">Customer Login</span>
+
+                {successMessage && <p className="text-success text-center font-weight-bold">{successMessage}</p>}
+                {errors.serverError && <p className="text-danger text-center font-weight-bold">{errors.serverError}</p>}
+
 
                 <Input
                   type="text"
@@ -69,10 +148,10 @@ export default class Login extends Component {
                 <Input
                   type="password"
                   classes="input100"
-                  value={pass}
-                  name="pass"
-                  label="Password"
-                  id="pass"
+                  value={password}
+                  name="password"
+                  label="password"
+                  id="password"
                   placeholder="Enter the Password"
                   onChange={ev =>
                     this.setState({ [ev.target.name]: ev.target.value })
@@ -85,7 +164,6 @@ export default class Login extends Component {
                     <p className="text-danger font-weight-bold">
                       {errors.errorObj["password"].message}
                     </p>
-
                     <br />
                   </div>
                 )}
@@ -95,21 +173,14 @@ export default class Login extends Component {
                   value="Login"
                   classes="login100-form-btn"
                 />
+                <br></br>
 
-                <div class="text-center p-t-45 p-b-4">
-                  <span class="txt1"> Forgot </span>
+                <div className="text-center">
+                  <span className="txt1">Create an account? </span>
 
-                  <a href="#" class="txt2 hov1">
-                    Username / Password?
-                  </a>
-                </div>
-
-                <div class="text-center">
-                  <span class="txt1">Create an account?</span>
-
-                  <a href="#" class="txt2 hov1">
+                  <Link to="/register" className="txt2 hov1">
                     Sign up
-                  </a>
+                  </Link>
                 </div>
               </form>
             </div>
