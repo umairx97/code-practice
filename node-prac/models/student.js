@@ -6,6 +6,7 @@ const studentSchema = mongoose.Schema({
   email: {
     type: String,
     required: false,
+    unique: true,
     trim: true,
     validate(value) {
       if (!validator.isEmail(value)) {
@@ -44,13 +45,18 @@ const studentSchema = mongoose.Schema({
 });
 
 
-
-
 studentSchema.pre("save", async function(next) {
   
   const student = this;
+  
+  console.log('Original Password', student.password);
+
+  if (!student.isModified('password')) {
+    return next();
+  }
+
   student.password = await bcrypt.hash(student.password, 8)
-  console.log('This is a PRE middleware')
+  console.log('Hashed Password', student.password)
   next();
 
 });
