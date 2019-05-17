@@ -65,7 +65,7 @@ app.patch('/api/student/:id', async (req, res) =>{
   const updatedFields = Object.keys(req.body); 
   const fieldsInModel = ['age', 'email', 'name', 'password', 'gender'];
 
-  
+
   const isUpdateAllowed = updatedFields.every(field => fieldsInModel.includes(field));
 
   if(!isUpdateAllowed){ 
@@ -78,8 +78,7 @@ app.patch('/api/student/:id', async (req, res) =>{
       if(!student){ 
         res.status(404).send({ success: false, error: 'Cannot find student by Id' })
       }
-      
-      res.send(data);
+    
   } catch(err){ 
     console.log(err)
   }
