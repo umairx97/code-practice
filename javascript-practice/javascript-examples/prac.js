@@ -17,7 +17,7 @@
 //   return a;
 // };
 
-// console.log(checkBalance('Umair'))
+// console.log(checkBalance('Asad'))
 
 // const deposit = (name, amount) => {
 //   for (let i = 0; i < data.length; i++) {
@@ -36,7 +36,7 @@
 //   return a;
 // };
 
-// console.log(closeAccount("Asad"));
+// console.log(closeAccount("Umair"));
 
 // const addNewAccount = name => {
 //   const obj = {
@@ -49,9 +49,7 @@
 //   return merged;
 // };
 
-// console.log(addNewAccount('Ashir'))
-
-
+// console.log(addNewAccount('Mehar'))
 
 
 
@@ -343,6 +341,84 @@
 
 
 // console.table(peopleArray)
+
+/**
+|==========================================================
+|
+|==========================================================
+*/
+
+// const validateForm = (check, data) => {
+
+//     let { username, password } = data;
+
+//     var errors = {
+//         hasError: false,
+//         errorsObj: {}
+//     }
+//     let Validation = {
+//         username: {
+//             validate: [
+//                 {
+//                     condition: !username.length,
+//                     message: 'Please specify username'
+//                 }, 
+
+//                 {
+//                     condition: username.length < 10,
+//                     message: 'Username Should be greater than 10'
+//                 }
+//             ],
+
+//             elem: 'username'
+//         },
+
+//         password: {
+//             validate: [
+//                 {
+//                     condition: !password.length,
+//                     message: 'Please Specify Password'
+//                 }
+//             ],
+
+//             elem: 'password'
+//         }
+//     }
+
+
+//     if (check === 'all') {
+//         for (let i in Validation) {
+//             let conArray = Validation[i].validate;
+//             errors.errorsObj[Validation[i].elem] = { message: [] };
+
+//             for (let j = 0; j < conArray.length; j++) {
+//                 if (conArray[j].condition) {
+//                     errors.hasError = true;
+//                     errors.errorsObj[Validation[i].elem].message.push(conArray[j].message);
+//                 }
+
+//             }
+
+//             if (!errors.errorsObj[Validation[i].elem].message.length) {
+//                 delete errors.errorsObj[Validation[i].elem];
+//             }
+//         }
+//     }
+
+//     return Object.keys(errors).length > 1 ? errors : {
+//         hasError: false
+//     }
+// }
+
+
+// const username = "";
+// const password = "123456"
+
+// const err = validateForm('all', { username, password })
+
+// console.log(err)
+
+
 
 /**
 |==========================================================

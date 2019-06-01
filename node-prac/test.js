@@ -1,4 +1,6 @@
-// const axios = require("axios");
+// import Axios from "axios";
+
+const Axios = require("axios");
 
 // axios
 //   .get("http://localhost:3001/api")
@@ -29,3 +31,13 @@
 // const data = fieldsToUpdate.every(field => fieldsInModel.includes(field) ); 
 
 // console.log(data);
+
+
+// Axios.post('http://localhost:3001/api/users', {
+//     username: 'umairx97',
+//     password: '123456',
+//     age: 20,
+//     email: 'abc@abc.com'
+// }).then(res => console.log(res)).catch(err => {
+//     console.log(err)
+// })
