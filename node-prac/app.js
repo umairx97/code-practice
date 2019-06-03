@@ -116,6 +116,29 @@
 |--------------------------------------------------
 */
 
-require('dotenv').config();
-console.log(process.env.SECRET_MESSAGE);
+
+const express = require("express");
+const app = express();
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const cors = require('cors')
+
+
+app.use(bodyParser());
+app.use(cookieParser());
+app.use(logger('dev'));
+app.use("*", cors());
+
+app.post('/serv', (req, res) => { 
+    console.log(req.body)
+    res.send(200)
+})
+
+app.listen(4000, () => { 
+    console.log('The server is running at 4000')
+})
+
+
+
 
