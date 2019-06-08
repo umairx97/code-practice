@@ -1,0 +1,8 @@
+{
+    "Product1": {
+        "price": "100",
+        "productName": "Tapal Danedar", 
+        "expiryDate": "01/01/2020",
+        "detail": "A product to make tea"
+    }
+}
