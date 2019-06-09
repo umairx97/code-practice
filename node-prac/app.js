@@ -117,68 +117,65 @@
 */
 
 
-const express = require("express");
-const app = express();
-const logger = require('morgan');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const cors = require('cors')
-const fs = require('fs');
-const mongoose = require('mongoose')
+// const express = require("express");
+// const app = express();
+// const logger = require('morgan');
+// const bodyParser = require('body-parser');
+// const cookieParser = require('cookie-parser');
+// const cors = require('cors')
+// const fs = require('fs');
+// const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost:27017/nafees');
-
-
-const ProductSchema = mongoose.Schema({
-    productName: String,
-    price: {
-        type: Number,
-        max: 5000,
-    },
-
-    detail: String,
-    expiryDate: Date,
-
-})
+// mongoose.connect('mongodb://localhost:27017/nafees');
 
 
-const Product = mongoose.model('Product', ProductSchema);
+// const ProductSchema = mongoose.Schema({
+//     productName: String,
+//     price: {
+//         type: Number,
+//         max: 5000,
+//     },
 
-require('dotenv').config();
+//     detail: String,
+//     expiryDate: Date,
 
-app.use(bodyParser());
-app.use(cookieParser());
-app.use(logger('dev'));
-app.use("*", cors());
-
-app.get('/data', async (req, res) => {
-    fs.readFile('DATA.json', async function (err, data) {
-        if (err) {
-            const saved = await Product.find({});
-            res.send(saved);
-        } else {
-            try {
-                const parsed = JSON.parse(data);
-
-                const product = await Product.create(parsed.Product1);
-                product.save();
-
-                if (product) {
-                    const saved = await Product.find({})
-                    res.status(200).send(saved);
-                }
-
-            } catch (err) {
-                console.log(err)
-            }
-        }
-    });
-})
-
-app.listen(4000, () => {
-    console.log('The server is running at 4000')
-})
+// })
 
 
+// const Product = mongoose.model('Product', ProductSchema);
 
+// require('dotenv').config();
+
+// app.use(bodyParser());
+// app.use(cookieParser());
+// app.use(logger('dev'));
+// app.use("*", cors());
+
+// app.get('/data', async (req, res) => {
+//     fs.readFile('DATA.json', async function (err, data) {
+//         if (err) {
+//             const saved = await Product.find({});
+//             res.send(saved);
+//         } else {
+//             try {
+//                 const parsed = JSON.parse(data);
+
+//                 const product = await Product.create(parsed.Product1);
+//                 product.save();
+
+//                 if (product) {
+//                     const saved = await Product.find({})
+//                     res.status(200).send(saved);
+//                 }
+
+//             } catch (err) {
+//                 console.log(err)
+//             }
+//         }
+//     });
+// })
+
+// app.listen(4000, () => {
+//     console.log('The server is running at 4000')
+// })
 
