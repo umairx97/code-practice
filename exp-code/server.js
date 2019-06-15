@@ -191,7 +191,7 @@ app.post('/login', (request, response) => {
     // catching the username and password coming from client side
     // all the data comming from client side will come in request body
     const username = request.body.username;
-    const password = request.password.password;
+    const password = request.body.password;
 
 
     // Loop the users array to find matches 
