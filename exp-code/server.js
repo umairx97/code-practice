@@ -188,6 +188,13 @@ app.post('/login', (request, response) => {
     ]
 
 
+    //Checking if the body is empty or not for errors handling
+    if (!request.body) {
+        return response.send('Please send data in body')
+        // The below code will not execute in route because it will return from here
+    }
+
+
     // catching the username and password coming from client side
     // all the data comming from client side will come in request body
     const username = request.body.username;
@@ -219,6 +226,14 @@ app.post('/register', (request, response) => {
     let RegUsers = [];
 
 
+
+    //Checking if the body is empty or not for errors handling
+    if (!request.body) {
+        return response.send('Please send data in body')
+        // The below code will not execute in route because it will return from here
+    }
+
+
     // Picking out username and password from the request 
     const { username, password } = request.body;
 
@@ -230,8 +245,15 @@ app.post('/register', (request, response) => {
     }
 
     RegUsers.push(newUser); //Adding the new user in the array 
-    response.send('You are registered')
-    
+
+    // CHecking if there is a user added or not by checking the length of users array
+    if (RegUsers.length) {
+        response.send('You are registered')
+
+    } else {
+        response.send('Please Try Again')
+    }
+
 
 })
 
