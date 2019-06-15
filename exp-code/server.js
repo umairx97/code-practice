@@ -1,6 +1,7 @@
 /**
 |--------------------------------------------------
 | Try to understand the structure of code rather than copying it exact same 
+  The code below is just for understanding purpose.. it will not run without a raspberry PI
 |--------------------------------------------------
 */
 
