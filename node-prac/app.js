@@ -126,18 +126,21 @@
 // const fs = require('fs');
 // const mongoose = require('mongoose')
 
-// mongoose.connect('mongodb://localhost:27017/nafees');
+// mongoose.connect('mongodb+srv://umair:home5757@cluster0-4iwec.mongodb.net/icart?retryWrites=true&w=majority'
+//   , { useNewUrlParser: true, useCreateIndex: true }
+
+// );
 
 
 // const ProductSchema = mongoose.Schema({
-//     productName: String,
-//     price: {
-//         type: Number,
-//         max: 5000,
-//     },
+//   productName: String,
+//   price: {
+//     type: Number,
+//     max: 5000,
+//   },
 
-//     detail: String,
-//     expiryDate: Date,
+//   detail: String,
+//   expiryDate: Date,
 
 // })
 
@@ -151,31 +154,97 @@
 // app.use(logger('dev'));
 // app.use("*", cors());
 
-// app.get('/data', async (req, res) => {
-//     fs.readFile('DATA.json', async function (err, data) {
-//         if (err) {
-//             const saved = await Product.find({});
-//             res.send(saved);
-//         } else {
-//             try {
-//                 const parsed = JSON.parse(data);
 
-//                 const product = await Product.create(parsed.Product1);
-//                 product.save();
-
-//                 if (product) {
-//                     const saved = await Product.find({})
-//                     res.status(200).send(saved);
-//                 }
-
-//             } catch (err) {
-//                 console.log(err)
-//             }
-//         }
-//     });
-// })
+// let ProductData = {
+//   preDef: '',
+//   postDef: ''
+// };
 
 // app.listen(4000, () => {
-//     console.log('The server is running at 4000')
+//   console.log('The server is running at 4000')
+
+//   fs.readFile('DATA.json', async function (err, data) {
+//     if (err) {
+//       console.log('File not found')
+
+//     } else {
+//       try {
+//         const parsed = JSON.parse(data);
+
+//         const product = await Product.create(parsed.Product1);
+//         product.save();
+
+//         if (product) {
+//           const saved = await Product.find({})
+//           if (saved) {
+//             ProductData.postDef = saved;
+//             return ProductData;
+//           }
+//         }
+
+//       } catch (err) {
+//         console.log(err)
+//       }
+//     }
+//   });
+
 // })
 
+
+
+
+
+
+/**
+|--------------------------------------------------
+| 
+|--------------------------------------------------
+*/
+
+
+
+
+
+const express = require("express");
+const app = express();
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const cors = require('cors')
+
+
+let multer  = require('multer')
+let upload = multer({ dest: 'uploads/' })
+ 
+ 
+
+
+// app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieParser());
+app.use(logger('dev'));
+app.use("*", cors());
+
+
+
+app.post('/form', upload.single('file'),  (req, res) => {
+  
+ 
+  const data = JSON.stringify(req.body); 
+  const parsed = JSON.parse(data);
+
+  let fields = {
+    parsed, 
+    file: req.file 
+  }
+
+  console.log(fields)
+
+
+
+})
+
+
+
+app.listen(4000, () => {
+  console.log('The server is running at 4000')
+})
