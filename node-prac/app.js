@@ -205,46 +205,48 @@
 
 
 
-const express = require("express");
-const app = express();
-const logger = require('morgan');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const cors = require('cors')
+// const express = require("express");
+// const app = express();
+// const logger = require('morgan');
+// const bodyParser = require('body-parser');
+// const cookieParser = require('cookie-parser');
+// const cors = require('cors')
 
 
-let multer  = require('multer')
-let upload = multer({ dest: 'uploads/' })
+// let multer  = require('multer')
+// let upload = multer({ dest: 'uploads/' })
  
  
 
 
-// app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser());
-app.use(logger('dev'));
-app.use("*", cors());
+// // app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(cookieParser());
+// app.use(logger('dev'));
+// app.use("*", cors());
 
 
 
-app.post('/form', upload.single('file'),  (req, res) => {
+// app.post('/form', upload.single('file'),  (req, res) => {
   
  
-  const data = JSON.stringify(req.body); 
-  const parsed = JSON.parse(data);
+//   const data = JSON.stringify(req.body); 
+//   const parsed = JSON.parse(data);
 
-  let fields = {
-    parsed, 
-    file: req.file 
-  }
+//   let fields = {
+//     parsed, 
+//     file: req.file 
+//   }
 
-  console.log(fields)
-
-
-
-})
+//   console.log(fields)
 
 
 
-app.listen(4000, () => {
-  console.log('The server is running at 4000')
-})
+// })
+
+
+
+// app.listen(4000, () => {
+//   console.log('The server is running at 4000')
+// })
+
+

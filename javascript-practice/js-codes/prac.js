@@ -17,7 +17,7 @@
 //   return a;
 // };
 
-// console.log(checkBalance('Asad'))
+// console.log(checkBalance('Umair'))
 
 // const deposit = (name, amount) => {
 //   for (let i = 0; i < data.length; i++) {
@@ -36,7 +36,7 @@
 //   return a;
 // };
 
-// console.log(closeAccount("Umair"));
+// console.log(closeAccount("Asad"));
 
 // const addNewAccount = name => {
 //   const obj = {
@@ -94,8 +94,10 @@
 // for (let i = 0; i < fruits.length; i++) {
 //   if (a === fruits[i]) {
 //     console.log("Value found");
+
 //   } else {
 //     console.log("Value not found");
+
 //   }
 // }
 
@@ -419,6 +421,27 @@
 // console.log(err)
 
 
+
+/**
+|==========================================================
+| 
+|==========================================================
+*/
+
+
+// const callBackFunction = function (password, callback) {
+//     if (password === '123') {
+//        callback(null, true)
+//     }
+
+// }
+
+// const password = '123';
+// callBackFunction(password, function (err, match) {
+//     if (match) {
+//         console.log('Yes the callback works')
+//     }
+// })
 
 /**
 |==========================================================
