@@ -184,7 +184,7 @@ app.post('/login', (request, response) => {
     const users = [
         { username: 'umair', password: '123456' },
         { username: "asad", password: '123456' },
-        { userame: 'ashir', password: '654321' }
+        { userame: 'shahbaz', password: '654321' }
     ]
 
 
