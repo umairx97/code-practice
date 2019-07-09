@@ -59,7 +59,7 @@ let led = new Gpio('4', 'out');
 let interval;
 
 
-// Process to start the raspberryy PI
+// Process to stop the raspberryy PI
 process.on('SIGINT', function () {
     clearInterval(interval);
     led.writeSync(0);
@@ -184,7 +184,7 @@ app.post('/login', (request, response) => {
     const users = [
         { username: 'umair', password: '123456' },
         { username: "asad", password: '123456' },
-        { userame: 'ashir', password: '654321' }
+        { userame: 'shahbaz', password: '654321' }
     ]
 
 
