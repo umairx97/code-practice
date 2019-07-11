@@ -117,78 +117,109 @@
 */
 
 
-// const express = require("express");
-// const app = express();
-// const logger = require('morgan');
-// const bodyParser = require('body-parser');
-// const cookieParser = require('cookie-parser');
-// const cors = require('cors')
-// const fs = require('fs');
-// const mongoose = require('mongoose')
-
-// mongoose.connect('mongodb+srv://umair:home5757@cluster0-4iwec.mongodb.net/icart?retryWrites=true&w=majority'
-//   , { useNewUrlParser: true, useCreateIndex: true }
-
-// );
+const express = require("express");
+const app = express();
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const cors = require('cors')
+const fs = require('fs');
+const mongoose = require('mongoose')
 
 
-// const ProductSchema = mongoose.Schema({
-//   productName: String,
-//   price: {
-//     type: Number,
-//     max: 5000,
-//   },
-
-//   detail: String,
-//   expiryDate: Date,
-
-// })
+const DATABASE_URI_PROD = "mongodb+srv://umair:home5757@cluster0-4iwec.mongodb.net/icart?retryWrites=true&w=majority"
+const DATABASE_URI_DEV = 'mongodb://localhost:27017/icart';
+mongoose.connect(DATABASE_URI_DEV, { useNewUrlParser: true, useCreateIndex: true });
 
 
-// const Product = mongoose.model('Product', ProductSchema);
+const ProductSchema = mongoose.Schema({
 
-// require('dotenv').config();
+    id: Number,
 
-// app.use(bodyParser());
-// app.use(cookieParser());
-// app.use(logger('dev'));
-// app.use("*", cors());
+    title: String,
+
+    img: String,
+
+    price: Number,
+
+    company: String,
+
+    info: String,
+
+    inCart: Boolean,
+
+    total: Number,
+
+    count: Number
+
+})
 
 
-// let ProductData = {
-//   preDef: '',
-//   postDef: ''
-// };
+const Product = mongoose.model('Product', ProductSchema);
 
-// app.listen(4000, () => {
-//   console.log('The server is running at 4000')
+require('dotenv').config();
 
-//   fs.readFile('DATA.json', async function (err, data) {
-//     if (err) {
-//       console.log('File not found')
+app.use(bodyParser());
+app.use(cookieParser());
+app.use(logger('dev'));
+app.use("*", cors());
 
-//     } else {
-//       try {
-//         const parsed = JSON.parse(data);
 
-//         const product = await Product.create(parsed.Product1);
-//         product.save();
+let ProductData = {
+    preDef: '',
+    postDef: ''
+};
 
-//         if (product) {
-//           const saved = await Product.find({})
-//           if (saved) {
-//             ProductData.postDef = saved;
-//             return ProductData;
-//           }
-//         }
 
-//       } catch (err) {
-//         console.log(err)
-//       }
-//     }
-//   });
 
-// })
+app.get('/api/products', async (req, res) => {
+
+    try {
+        const products = await Product.find({})
+        if (!products) {
+            res.status(404).json({ success: false, data: [] })
+        }
+        res.status(200).json({
+            success: true,
+            products: products
+        })
+
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+
+
+app.listen(4000, () => {
+    console.log('The server is running at 4000')
+
+    fs.readFile('DATA.json', async function (err, data) {
+        if (err) {
+            console.log('File not found')
+
+        } else {
+            try {
+                const parsed = JSON.parse(data);
+
+                const product = await Product.create(parsed.Product1);
+                product.save();
+
+                if (product) {
+                    const saved = await Product.find({})
+                    if (saved) {
+                        ProductData.postDef = saved;
+                        return ProductData;
+                    }
+                }
+
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    });
+
+})
 
 
 
@@ -197,7 +228,7 @@
 
 /**
 |--------------------------------------------------
-| 
+|
 |--------------------------------------------------
 */
 
@@ -215,8 +246,8 @@
 
 // let multer  = require('multer')
 // let upload = multer({ dest: 'uploads/' })
- 
- 
+
+
 
 
 // // app.use(bodyParser.urlencoded({ extended: true }))
@@ -227,8 +258,8 @@
 
 
 // app.post('/form', upload.single('file'),  (req, res) => {
-  
- 
+
+
 //   const data = JSON.stringify(req.body); 
 //   const parsed = JSON.parse(data);
 

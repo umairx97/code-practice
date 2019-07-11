@@ -1,8 +1,13 @@
 {
     "Product1": {
-        "price": "100",
-        "productName": "Shampoo", 
-        "expiryDate": "01/01/2020",
-        "detail": "A product to make tea"
+      "id": "1",
+      "title": "Danedar",
+      "img": "img/tapal.png",
+      "price": "300",
+      "company": "Tapal",
+      "info": "Make Refreshed",
+      "inCart": "false",
+      "total": "0",
+      "count": "0"
     }
-}
+  }
