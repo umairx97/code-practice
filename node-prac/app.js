@@ -129,7 +129,7 @@ const mongoose = require('mongoose')
 
 const DATABASE_URI_PROD = "mongodb+srv://umair:home5757@cluster0-4iwec.mongodb.net/icart?retryWrites=true&w=majority"
 const DATABASE_URI_DEV = 'mongodb://localhost:27017/icart';
-mongoose.connect(DATABASE_URI_DEV, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(DATABASE_URI_PROD, { useNewUrlParser: true, useCreateIndex: true });
 
 
 const ProductSchema = mongoose.Schema({
@@ -202,16 +202,32 @@ app.listen(4000, () => {
             try {
                 const parsed = JSON.parse(data);
 
-                const product = await Product.create(parsed.Product1);
-                product.save();
-
-                if (product) {
-                    const saved = await Product.find({})
-                    if (saved) {
-                        ProductData.postDef = saved;
-                        return ProductData;
+                if(parsed.Product1){ 
+                    const product = await Product.create(parsed.Product1);
+                    product.save();
+    
+                    if (product) {
+                        const saved = await Product.find({})
+                        if (saved) {
+                            ProductData.postDef = saved;
+                            return ProductData;
+                        }
                     }
+                } else if (parsed.Product2){ 
+                    const product = await Product.create(parsed.Product2);
+                    product.save();
+    
+                    if (product) {
+                        const saved = await Product.find({})
+                        if (saved) {
+                            ProductData.postDef = saved;
+                            return ProductData;
+                        }
+                    }
+
                 }
+
+                
 
             } catch (err) {
                 console.log(err)
